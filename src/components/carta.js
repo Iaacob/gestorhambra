@@ -5,8 +5,7 @@ const Carta = (props) => {
 
   return (
     <>
-      <h2>ADMINISTRA TUS CITAS</h2>
-      <div className="card carta">
+      <div className="cita">
         <div className="card-body">
           <h3>Citas</h3>
           <p className="card-text">Mascota: <span>nombreMascota</span> </p>
