@@ -1,6 +1,9 @@
 import './App.css';
+import React from 'react';
 import Formulario from './components/formulario';
 import Boton from './components/button';
+import Carta from './components/carta';
+
 
 function App() {
   return (
@@ -12,6 +15,10 @@ function App() {
             <h2>Crear mi Cita</h2>
             <Formulario/>
             <Boton/>
+
+          </div>
+          <div className='one-half column'>
+            <Carta/>
           </div>
         </div>
       </div>
