@@ -1,5 +1,5 @@
 import './App.css';
-import {React, useState} from 'react';
+import React, {useState} from 'react';
 import Formulario from './components/formulario.js';
 import Citas from './components/citas.js';
 
@@ -8,7 +8,7 @@ function App() {
   const [citas, setCitas] = useState([])
   const agregarCita = (cita) => {
     let newCitas = [];
-    Citas.map(
+    citas.map(
       (c) => {newCitas.push(c)}
     )
     newCitas.push (cita)
@@ -17,10 +17,10 @@ function App() {
 
   const eliminarCita = (index) => {
     let newCitas = [];
-    Citas.map(
+    citas.map(
       (c) => {newCitas.push(c)}
     )
-    newCitas.slice(index,1)
+    newCitas.splice(index,index+1)
     setCitas(newCitas)
   }
 

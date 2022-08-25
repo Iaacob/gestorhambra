@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../App.css';
 
 
-function Formulario() {
+function Formulario({agregarCita}) {
     const datos = ["nombreMascota", "nombreDueño", "fecha", "hora", "sintomas"];
     const [citaForm, setCitaForm] = useState({
         nombreMascota: "",
@@ -28,8 +28,8 @@ function Formulario() {
         agregarDato(e.target.name, e.target.value);
     }
     
-    const sumarCita =()=>{
-        console.log(citaForm);
+    const sumarCita = () => {
+        agregarCita(citaForm);
     }
 
     return (
@@ -39,9 +39,9 @@ function Formulario() {
                 <div className="flex-col col-6">
                     <div class="form">
                         <label>nombre de la mascota:</label>
-                        <input type="text" name="mascota" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange}></input>
+                        <input type="text" name="nombreMascota" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange}></input>
                         <label>nombre del dueño:</label>
-                        <input type="text" name="dueño" class="u-full-width" placeholder="Nombre del dueño" onChange={handleChange}></input>
+                        <input type="text" name="nombreDueño" class="u-full-width" placeholder="Nombre del dueño" onChange={handleChange}></input>
                         <label>fecha:</label>
                         <input type="date" name="fecha" class="u-full-width" onChange={handleChange}></input>
                         <label>hora:</label>
