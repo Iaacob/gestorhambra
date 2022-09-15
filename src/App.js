@@ -1,4 +1,3 @@
-import './App.css';
 import React, {useState} from 'react';
 import Formulario from './components/formulario.js';
 import Citas from './components/citas.js';
@@ -25,21 +24,21 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <>
       <h1>ADMINISTRADOR DE PACIENTES</h1>
       <div className="container">
         <div className="row">
-          <div className='col-md-6'>
+          <div className="one-half column">
             <h2>CREAR CITA</h2>
             <Formulario agregarCita={agregarCita}/>
           </div>
-          <div className='col-md-6'>
+          <div className="one-half column">
            <h2>ADMINISTRA TUS CITAS</h2>
             <Citas citas={citas} eliminarCita={eliminarCita}/>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

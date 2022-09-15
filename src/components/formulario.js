@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import '../App.css';
-
 
 function Formulario({agregarCita}) {
     const datos = ["nombreMascota", "nombreDueño", "fecha", "hora", "sintomas"];
@@ -10,49 +8,49 @@ function Formulario({agregarCita}) {
         fecha: "",
         hora: "",
         sintomas: ""
-    })
+    })    
 
-    const agregarDato = (dato, valor) => {
-        let nuevaCita = {};
-        datos.map(
-            (d)=>{
-                nuevaCita[d]=citaForm[d]
-            }
-
-        )
-        nuevaCita[dato]=valor
-        setCitaForm(nuevaCita);
-    }
+    const [error,setError] = useState(false);
 
     const handleChange = (e) => {
-        agregarDato(e.target.name, e.target.value);
+        setCitaForm({
+            ...citaForm, 
+            [e.target.name]:e.target.value            
+        });
     }
     
-    const sumarCita = () => {
+    const sumarCita = (e) => {
+        e.preventDefault();
+
+        //hacer validacion
+        if(citaForm.nombreMascota==='' || citaForm.nombreDueño==='' || citaForm.fecha==='' || citaForm.hora==='' || citaForm.sintomas===''){
+            setError(true)
+            return;
+        }
+
+        setError(false)
+
         agregarCita(citaForm);
     }
 
-    return (
+    console.log(citaForm)
 
-        <div className="container">
-            <div className="row estructura">
-                <div className="flex-col col-6">
-                    <div class="form">
-                        <label>nombre de la mascota:</label>
-                        <input type="text" name="nombreMascota" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange}></input>
-                        <label>nombre del dueño:</label>
-                        <input type="text" name="nombreDueño" class="u-full-width" placeholder="Nombre del dueño" onChange={handleChange}></input>
-                        <label>fecha:</label>
-                        <input type="date" name="fecha" class="u-full-width" onChange={handleChange}></input>
-                        <label>hora:</label>
-                        <input type="time" name="hora" class="u-full-width" onChange={handleChange}></input>
-                        <label>Síntomas:</label>
-                        <textarea name="sintomas" class="u-full-width" onChange={handleChange}></textarea>
-                    </div>
-                    <button class="u-full-width button-primary" onClick={sumarCita}>Agregar Cita</button>
-                </div>
-            </div>
-        </div>
+    return (
+        
+        <form onSubmit={sumarCita}>
+            {error && <div className="alerta-error">Debe completar todos los campos</div> }
+            <label>nombre de la mascota:</label>
+            <input type="text" name="nombreMascota" className="u-full-width" placeholder="Nombre Mascota" onChange={handleChange} />
+            <label>nombre del dueño:</label>
+            <input type="text" name="nombreDueño" className="u-full-width" placeholder="Nombre del dueño" onChange={handleChange} />
+            <label>fecha:</label>
+            <input type="date" name="fecha" className="u-full-width" onChange={handleChange} />
+            <label>hora:</label>
+            <input type="time" name="hora" className="u-full-width" onChange={handleChange} />
+            <label>Síntomas:</label>
+            <textarea name="sintomas" className="u-full-width" onChange={handleChange}></textarea>                
+            <button className="u-full-width button-primary" type="submit">Agregar Cita</button>
+        </form>        
     )
 }
 export default Formulario;
